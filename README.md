@@ -21,4 +21,4 @@ Usage is very simple. If, for example, you have a Users table that you want to s
 
 EXEC SPROC_GenerateShadowTable 'Users'
 
-Now any insert, update, or delete actions will be inserted into the corresponding _shadow_Users table.
+Now any insert, update, or delete actions on the Users will be inserted into the corresponding _shadow_Users table.

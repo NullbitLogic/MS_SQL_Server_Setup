@@ -1,13 +1,13 @@
 # MS SQL Server Setup
 A repo containing the core MSSQL Server stored procs, functions, tables, and views that I use for all databases.
 
-#Using SPROC_GenerateShadowTable
+# Using SPROC_GenerateShadowTable
 
 After executing the script that generates SPROC_GenerateShadowTable, usage is simple. This should work on any MSSQL database table.
 
 This stored proc does a couple things:
 
-- It creates a corresponding "shadow" table for auditing purposes. All actions on the "source" table will be inserted into the corresponding shadow table (inserts, updates, deletes). Shadow tables are named the same as the target table but with '_shadow_' proceeding the target table. So for example if you create a shadow table for Users then the corresponding shadow table will be named _shadow_Users.
+- It creates a corresponding "shadow" table for auditing purposes. All actions on the 'source' table will be inserted into the corresponding shadow table (inserts, updates, deletes). Shadow tables are named the same as the target table but with '_shadow_' proceeding the target table. So for example if you create a shadow table for Users then the corresponding shadow table will be named _shadow_Users.
 
 - It creates a simple trigger on the source table so that inserts, updates, and deletes are automatically inserted into the related shadow table, providing a full audit trail.
 

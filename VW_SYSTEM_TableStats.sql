@@ -2,16 +2,15 @@ IF OBJECT_ID('VW_SYSTEM_TableStats', 'V') IS NOT NULL DROP VIEW VW_SYSTEM_TableS
 GO
 
 CREATE VIEW [dbo].[VW_SYSTEM_TableStats] AS
-SELECT 
-    t.NAME AS TableName,
-    s.Name AS SchemaName,
-    p.rows AS RowCounts,
-    SUM(a.total_pages) * 8 AS TotalSpaceKB, 
-    CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
-    SUM(a.used_pages) * 8 AS UsedSpaceKB, 
-    CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB, 
-    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
-    CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
+SELECT t.NAME AS TableName
+    , s.Name AS SchemaName
+    , p.rows AS RowCounts
+    , SUM(a.total_pages) * 8 AS TotalSpaceKB
+    , CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB
+    , SUM(a.used_pages) * 8 AS UsedSpaceKB
+    , CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB
+    , (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB
+    , CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
 FROM 
     sys.tables t
 INNER JOIN      
